@@ -1,3 +1,15 @@
+#Intellij files
+/.idea/
+*.iml
+/target/
+/lib
+/build/
+/.gradle/
+
+#Project files
+/Screenshots
+.classpath
+
 # Compiled class file
 *.class
 

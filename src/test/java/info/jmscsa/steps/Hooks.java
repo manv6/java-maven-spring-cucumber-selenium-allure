@@ -1,0 +1,13 @@
+package info.jmscsa.steps;
+
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+
+public class Hooks {
+	@After()
+	public void beforeScenario(Scenario scenario) {
+		System.out.println("In hooks");
+		System.out.println(scenario.getName());
+		System.out.println(scenario.getStatus());
+	}
+}
