@@ -1,49 +1,19 @@
 # Java-Cucumber-Selenium-Allure-Maven-Spring Skeleton project
 
 This is the simplest possible build script setup for Cucumber using Java.
-There is nothing fancy like a webapp or browser testing. All this does is to show you how
-to install and run Cucumber!
+All this does is to show you how to install and run Cucumber!
 
-There is a single feature file with one scenario. The scenario has three steps, two of them pending. See if you can make them all pass!
-
-## Get the code
-
-Git:
-
-   
-
-Subversion:
-
-    
-Or simply [download a zip] file.
+There is a single feature file with one scenario for testing purposes. 
 
 ## Use Maven
 
 Open a command window and run:
 
-    mvn test
+    mvn clean test "-Dbrowser=chrome"
 
 This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(Cucumber.class)` annotation on the `RunCukesTest`
 class tells JUnit to kick off Cucumber.
 
-## Use Ant
-
-Open a command window and run:
-
-    ant download
-    ant runcukes
-
-This runs Cucumber features using Cucumber's Command Line Interface (CLI) runner. Note that the `RunCukesTest` junit class is not used at all.
-If you remove it (and the `cucumber-junit` jar dependency), it will run just the same.
-
-## Use Gradle
-
-Open a command window and run:
-
-    gradlew test
-
-This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(Cucumber.class)` annotation on the `RunCukesTest`
-class tells JUnit to kick off Cucumber.
 
 ## Overriding options
 
@@ -56,14 +26,6 @@ Sometimes it can be useful to override these options without changing or recompi
 Using Maven:
 
     mvn -Dcucumber.options="..." test
-
-Using Ant:
-
-    JAVA_OPTIONS='-Dcucumber.options="..."' ant runcukes
-
-Using Gradle:
-
-    gradlew -Dcucumber.options="..." test
 
 Let's look at some things you can do with `cucumber.options`. Try this:
 
