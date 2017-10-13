@@ -1,6 +1,4 @@
-# Cucumber-Java Skeleton
-
-![](https://travis-ci.org/cucumber/cucumber-java-skeleton.svg)
+# Java-Cucumber-Selenium-Allure-Maven-Spring Skeleton project
 
 This is the simplest possible build script setup for Cucumber using Java.
 There is nothing fancy like a webapp or browser testing. All this does is to show you how
@@ -12,15 +10,12 @@ There is a single feature file with one scenario. The scenario has three steps, 
 
 Git:
 
-    git clone https://github.com/cucumber/cucumber-java-skeleton.git
-    cd cucumber-java-skeleton
+   
 
 Subversion:
 
-    svn checkout https://github.com/cucumber/cucumber-java-skeleton/trunk cucumber-java-skeleton
-    cd cucumber-java-skeleton
-
-Or simply [download a zip](https://github.com/cucumber/cucumber-java-skeleton/archive/master.zip) file.
+    
+Or simply [download a zip] file.
 
 ## Use Maven
 
