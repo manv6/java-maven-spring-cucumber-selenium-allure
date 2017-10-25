@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.workable.hackathon.suite</groupId>
-    <artifactId>hackathon</artifactId>
-    <version>1.0-HACKATHON</version>
+    <groupId>com.websoul.qatools</groupId>
+    <artifactId>framework</artifactId>
+    <version>1.0-FRAMEWORK</version>
 
     <dependencies>
         <dependency>
@@ -291,16 +291,16 @@
                             <goal>generateRunners</goal>
                         </goals>
                         <configuration>
-                            <featuresDirectory>src/test/resources/com/workable/hackathon/suite/scenarios/
+                            <featuresDirectory>src/test/resources/com/websoul/qatools/scenarios/
                             </featuresDirectory>
                             <!-- Mandatory -->
                             <!-- List of package names to scan for glue code. -->
                             <glue>
-                                <package>com.workable.hackathon.steps</package>
+                                <package>com.websoul.qatools.steps</package>
                             </glue>
                             <plugins>
-                                <plugin>com.epam.reportportal.cucumber.StepReporter</plugin>
-                                <plugin>com.epam.reportportal.cucumber.ScenarioReporter</plugin>
+                                <!--<plugin>com.epam.reportportal.cucumber.StepReporter</plugin>-->
+                                <!--<plugin>com.epam.reportportal.cucumber.ScenarioReporter</plugin>-->
                                 <plugin>
                                     <name>json</name>
                                     <extension>json</extension>
@@ -329,7 +329,7 @@
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>com.workable.hackathon.helpers.listeners.CucumberListener</value>
+                            <value>com.websoul.qatools.helpers.listeners.CucumberListener</value>
                         </property>
                     </properties>
                 </configuration>

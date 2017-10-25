@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
         monochrome = false,
         tags = {"~@ignore"},
         features = "classpath:parallel/features/[FEATURE_FILE_NAME].feature",
-        glue = {"com.workable.hackathon.steps"},
-        plugin = {"com.workable.hackathon.common.reporters.AllureReporter",
+        glue = {"com.websoul.qatools.hackathon.steps"},
+        plugin = {"com.websoul.qatools.hackathon.common.reporters.AllureReporter",
                 "com.epam.reportportal.cucumber.StepReporter",
                 "json",
                 "json:target/cucumber-report/[FEATURE_FILE_NAME].json"}
