@@ -1,15 +1,5 @@
 # Java-Cucumber-Selenium-Allure-Maven-Spring Skeleton project
 
-### Technology used 
-##### Java 1.8
-##### Cucumber 2.01
-##### Selenium 3.6.0
-##### Allure Reporting 2.6.3
-##### Maven 3.3+
-##### Gradle
-##### Spring 4.3.7-RELEASE
-##### Appium 2.6.0
-
 ### Testing approach
 ##### BDD Testing
 
@@ -19,18 +9,17 @@
 ##### Mobile App Testing (IOS and Android)
 ##### Parallel Execution
 
-#### Hubs and Grid
+### Hubs and Grid
 ##### SauceLabs Integration
 ##### Gridlastic Integration
 ##### Selenoid Integration
 
-####  Reporting
+###  Reporting
 ##### ReportPortal Integration
 ##### Video Recording
 ##### Screenshots Recording
 ##### Logs Recording
 ##### Code Coverage 
-
 
 There is a sample test 
 
@@ -100,3 +89,13 @@ This works as long as you have the `rerun` formatter enabled.
 For example a JUnit formatter:
 
     -Dcucumber.options="--plugin junit:target/cucumber-junit-report.xml"
+
+### Technology used 
+##### Java 1.8
+##### Cucumber 2.01
+##### Selenium 3.6.0
+##### Allure Reporting 2.6.3
+##### Maven 3.3+
+##### Gradle
+##### Spring 4.3.7-RELEASE
+##### Appium 2.6.0
