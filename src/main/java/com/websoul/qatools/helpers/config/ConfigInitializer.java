@@ -52,7 +52,6 @@ public class ConfigInitializer {
         slf4jLogger.info("Object: initialCachedData initialized");
         slf4jLogger.info("Object: runtimeCachedData initialized");
         slf4jLogger.info("Object: browserCachedData initialized");
-
     }
 
     public String printArt() throws IOException {
