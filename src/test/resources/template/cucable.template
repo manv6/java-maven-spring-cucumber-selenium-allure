@@ -1,0 +1,22 @@
+package parallel.runners;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
+
+/**
+ * Test Runner for cucumber scenarios
+ */
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        monochrome = false,
+        tags = {"~@ignore"},
+        features = "classpath:parallel/features/[FEATURE_FILE_NAME].feature",
+        glue = {"com.workable.hackathon.steps"},
+        plugin = {"com.workable.hackathon.common.reporters.AllureReporter",
+                "com.epam.reportportal.cucumber.StepReporter",
+                "json",
+                "json:target/cucumber-report/[FEATURE_FILE_NAME].json"}
+)
+public class [FEATURE_FILE_NAME] {
+}
