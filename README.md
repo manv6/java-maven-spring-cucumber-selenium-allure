@@ -1,4 +1,4 @@
-# Java-Cucumber-Selenium-Allure-Maven-Spring Skeleton project
+# Testing Framework incoorporating all open source technologies
 
 ### Testing approach
 ##### BDD Testing
@@ -21,7 +21,7 @@
 ##### Logs Recording
 ##### Code Coverage 
 
-There is a sample test 
+# There is a sample test for Amazon WebSite
 
 ## Use Maven
 
