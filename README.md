@@ -1,25 +1,25 @@
 # Testing Framework incoorporating all open source technologies
 
 ### Testing approach
-##### BDD Testing
+    BDD Testing
 
 ### Features Supported
-##### Cross-Browser Compatibility Testing
-##### Mobile Web Testing
-##### Mobile App Testing (IOS and Android)
-##### Parallel Execution
+    Cross-Browser Compatibility Testing
+    Mobile Web Testing
+    Mobile App Testing (IOS and Android)
+    Parallel Execution
 
 ### Hubs and Grid
-##### SauceLabs Integration
-##### Gridlastic Integration
-##### Selenoid Integration
+    SauceLabs Integration
+    Gridlastic Integration
+    Selenoid Integration
 
 ###  Reporting
-##### ReportPortal Integration
-##### Video Recording
-##### Screenshots Recording
-##### Logs Recording
-##### Code Coverage 
+    ReportPortal Integration
+    Video Recording
+    Screenshots Recording
+    Logs Recording
+    Code Coverage 
 
 # There is a sample test for Amazon WebSite
 
@@ -91,11 +91,11 @@ For example a JUnit formatter:
     -Dcucumber.options="--plugin junit:target/cucumber-junit-report.xml"
 
 ### Technology used 
-##### Java 1.8
-##### Cucumber 2.01
-##### Selenium 3.6.0
-##### Allure Reporting 2.6.3
-##### Maven 3.3+
-##### Gradle
-##### Spring 4.3.7-RELEASE
-##### Appium 2.6.0
+    Java 1.8
+    Cucumber 2.01
+    Selenium 3.6.0
+    Allure Reporting 2.6.3
+    Maven 3.3+
+    Gradle
+    Spring 4.3.7-RELEASE
+    Appium 2.6.0
