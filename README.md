@@ -1,17 +1,44 @@
-# Java-Cucumber-Selenium-Allure-Maven-Spring Skeleton project
+# Testing Framework incoorporating all open source technologies
 
-This is the simplest possible build script setup for Cucumber using Java.
-All this does is to show you how to install and run Cucumber!
+### Testing approach
+    BDD Testing
 
-There is a single feature file with one scenario for testing purposes. 
+### Features Supported
+    Cross-Browser Compatibility Testing
+    Mobile Web Testing
+    Mobile App Testing (IOS and Android)
+    Parallel Execution
+
+### Hubs and Grid
+    SauceLabs Integration
+    Gridlastic Integration
+    Selenoid Integration
+
+###  Reporting
+    ReportPortal Integration
+    Video Recording
+    Screenshots Recording
+    Logs Recording
+    Code Coverage 
+
+# There is a sample test for Amazon WebSite
 
 ## Use Maven
 
 Open a command window and run:
 
-    mvn clean test "-Dbrowser=chrome"
+    mvn clean install
 
-This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(Cucumber.class)` annotation on the `RunCukesTest`
+This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(Cucumber.class)` annotation on the `CucumberExecutorTest`
+class tells JUnit to kick off Cucumber.
+
+## Use Gradle
+
+Open a command window and run:
+    
+    gradle clean test
+
+This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(Cucumber.class)` annotation on the `CucumberExecutorTest`
 class tells JUnit to kick off Cucumber.
 
 
@@ -25,7 +52,7 @@ Sometimes it can be useful to override these options without changing or recompi
 
 Using Maven:
 
-    mvn -Dcucumber.options="..." test
+    mvn -Dcucumber.options="..." install
 
 Let's look at some things you can do with `cucumber.options`. Try this:
 
@@ -38,19 +65,14 @@ That should list all the available options.
 When you override options with `-Dcucumber.options`, you will completely override whatever options are hard-coded in
 your `@CucumberOptions` or in the script calling `cucumber.api.cli.Main`. There is one exception to this rule, and that
 is the `--plugin` option. This will not _override_, but _add_ a plugin. The reason for this is to make it easier
-for 3rd party tools (such as [Cucumber Pro](https://cucumber.pro/)) to automatically configure additional plugins by appending arguments to a `cucumber.properties`
+for 3rd party tools to automatically configure additional plugins by appending arguments to a `cucumber.properties`
 file.
 
 ### Run a subset of Features or Scenarios
 
 Specify a particular scenario by *line* (and use the pretty plugin, which prints the scenario back)
 
-    -Dcucumber.options="classpath:skeleton/belly.feature:4 --plugin pretty"
-
-This works because Maven puts `./src/test/resources` on your `classpath`.
-You can also specify files to run by filesystem path:
-
-    -Dcucumber.options="src/test/resources/skeleton/belly.feature:4 --plugin pretty"
+    -Dcucumber.options="classpath:<path_to_feature_file> --plugin pretty"
 
 You can also specify what to run by *tag*:
 
@@ -67,3 +89,13 @@ This works as long as you have the `rerun` formatter enabled.
 For example a JUnit formatter:
 
     -Dcucumber.options="--plugin junit:target/cucumber-junit-report.xml"
+
+### Technology used 
+    Java 1.8
+    Cucumber 2.01
+    Selenium 3.6.0
+    Allure Reporting 2.6.3
+    Maven 3.3+
+    Gradle
+    Spring 4.3.7-RELEASE
+    Appium 2.6.0
