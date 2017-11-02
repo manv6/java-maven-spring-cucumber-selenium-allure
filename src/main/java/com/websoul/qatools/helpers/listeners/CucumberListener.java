@@ -1,6 +1,7 @@
 package com.websoul.qatools.helpers.listeners;
 
 import com.websoul.qatools.helpers.drivers.browsers.CucumberTestContext;
+import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 import org.openqa.selenium.OutputType;
@@ -21,7 +22,32 @@ public class CucumberListener extends RunListener{
     public void testFailure(Failure failure) {
         if (CucumberTestContext.getWebDriver() != null) {
             try {
-//                captureScreenshot(failure.getTestHeader(), CucumberTestContext.getWebDriver());
+                captureScreenshot(failure.getTestHeader(), CucumberTestContext.getWebDriver());
+            } catch (Exception e) {
+                slf4jLogger.error(e.getMessage());
+
+            }
+        }
+    }
+
+
+    @Override
+    public void testAssumptionFailure(Failure failure) {
+        if (CucumberTestContext.getWebDriver() != null) {
+            try {
+                captureScreenshot(failure.getTestHeader(), CucumberTestContext.getWebDriver());
+            } catch (Exception e) {
+                slf4jLogger.error(e.getMessage());
+
+            }
+        }
+    }
+
+    @Override
+    public void testIgnored(Description description) throws Exception {
+        if (CucumberTestContext.getWebDriver() != null) {
+            try {
+                captureScreenshot(description.getDisplayName(), CucumberTestContext.getWebDriver());
             } catch (Exception e) {
                 slf4jLogger.error(e.getMessage());
 
