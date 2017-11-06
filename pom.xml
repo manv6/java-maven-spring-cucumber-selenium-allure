@@ -207,6 +207,11 @@
             <artifactId>agent-java-cucumber</artifactId>
             <version>3.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.trivago.rta</groupId>
+            <artifactId>cucable-plugin</artifactId>
+            <version>0.0.9</version>
+        </dependency>
     </dependencies>
     <properties>
         <thread.count>1</thread.count>
@@ -224,6 +229,7 @@
         <allure.cucumber.jvm.adaptor>1.6.2</allure.cucumber.jvm.adaptor>
         <aspectj.version>1.8.4</aspectj.version>
         <joda-time.version>2.3</joda-time.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <repositories>
@@ -260,78 +266,63 @@
                     <debug>true</debug>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>com.trivago.rta</groupId>-->
-            <!--<artifactId>cucable-plugin</artifactId>-->
-            <!--<version>0.0.8</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>generate-test-resources</id>-->
-            <!--<phase>generate-test-resources</phase>-->
-
-            <!--<configuration>-->
-            <!--<sourceRunnerTemplateFile>src/test/resources/template/cucable.template</sourceRunnerTemplateFile>-->
-            <!--<sourceFeatures>src/test/resources/com/workable/hackathon/suite</sourceFeatures>-->
-            <!--<generatedFeatureDirectory>src/test/resources/parallel/features</generatedFeatureDirectory>-->
-            <!--<generatedRunnerDirectory>src/test/java/parallel</generatedRunnerDirectory>-->
-            <!--<numberOfTestRuns>1</numberOfTestRuns>-->
-            <!--</configuration>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
             <plugin>
-                <groupId>com.github.temyers</groupId>
-                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                <version>4.2.0</version>
+                <groupId>com.trivago.rta</groupId>
+                <artifactId>cucable-plugin</artifactId>
+                <version>0.0.9</version>
                 <executions>
                     <execution>
-                        <id>generateRunners</id>
-                        <phase>generate-test-sources</phase>
+                        <id>generate-test-resources</id>
+                        <phase>generate-test-resources</phase>
                         <goals>
-                            <goal>generateRunners</goal>
+                            <goal>parallel</goal>
                         </goals>
                         <configuration>
-                            <featuresDirectory>src/test/resources/com/websoul/qatools/scenarios/
-                            </featuresDirectory>
-                            <!-- Mandatory -->
-                            <!-- List of package names to scan for glue code. -->
-                            <glue>
-                                <package>com.websoul.qatools.steps</package>
-                            </glue>
-                            <plugins>
-                                <!--<plugin>com.epam.reportportal.cucumber.StepReporter</plugin>-->
-                                <!--<plugin>com.epam.reportportal.cucumber.ScenarioReporter</plugin>-->
-                                <plugin>
-                                    <name>json</name>
-                                    <extension>json</extension>
-                                    <outputDirectory>${project.build.directory}/cucumber-parallel/cucumber.json
-                                    </outputDirectory>
-                                </plugin>
-                            </plugins>
+                            <sourceRunnerTemplateFile>src/test/resources/template/cucable.template
+                            </sourceRunnerTemplateFile>
+                            <sourceFeatures>src/test/resources/com/websoul/qatools/scenarios</sourceFeatures>
+                            <generatedFeatureDirectory>src/test/resources/parallel/features</generatedFeatureDirectory>
+                            <generatedRunnerDirectory>src/test/java/parallel/runners</generatedRunnerDirectory>
+                            <numberOfTestRuns>1</numberOfTestRuns>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
                 <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>Run parallel tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
                     <forkCount>${thread.count}</forkCount>
                     <reuseForks>false</reuseForks>
-                    <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                         -Dcucumber.options="--plugin ru.yandex.qatools.allure.cucumberjvm.AllureReporter"
+                        -Dfile.encoding=UTF-8
                     </argLine>
-                    <includes>
-                        <include>**/*IT.class</include>
-                    </includes>
                     <properties>
                         <property>
                             <name>listener</name>
                             <value>com.websoul.qatools.helpers.listeners.CucumberListener</value>
                         </property>
                     </properties>
+                    <disableXmlReport>true</disableXmlReport>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -342,6 +333,25 @@
                 </dependencies>
             </plugin>
 
+            <!--<plugin>-->
+                <!--<groupId>net.masterthought</groupId>-->
+                <!--<artifactId>maven-cucumber-reporting</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>report</id>-->
+                        <!--<phase>post-integration-test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<outputDirectory>${project.build.directory}/cucumber-report/</outputDirectory>-->
+                            <!--<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>-->
+                            <!--<projectName>Websoul QA Tools Report</projectName>-->
+                            <!--<buildNumber>1</buildNumber>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
