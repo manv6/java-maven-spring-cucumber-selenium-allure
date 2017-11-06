@@ -1,4 +1,4 @@
-@hackathon
+@testScreen
 Feature: Test impl - Chrome
 
   Scenario: Chrome Buy latest console camera and pre order game
