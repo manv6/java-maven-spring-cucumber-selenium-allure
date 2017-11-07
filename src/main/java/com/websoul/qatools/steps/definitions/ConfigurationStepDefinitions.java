@@ -12,6 +12,7 @@ import com.websoul.qatools.helpers.utils.CommonTools;
 import com.websoul.qatools.helpers.utils.ScreenShotMaker;
 import com.websoul.qatools.helpers.utils.TestUtils;
 import com.websoul.qatools.helpers.utils.VideoMaker;
+import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -27,6 +28,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.awt.*;
 import java.io.IOException;
+
+import static junit.framework.TestCase.fail;
 
 
 public class ConfigurationStepDefinitions {
@@ -88,15 +91,17 @@ public class ConfigurationStepDefinitions {
     @After
     public void after() throws IOException {
         if (scenario.isFailed()) {
-            // Take a screenshot...
-            final byte[] screenshot = ((TakesScreenshot) browserDriver.getCurrentDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
+            scenario.embed(screenShotMaker.captureScreenshot(scenario.getName()),"image/png");
         }
         if (record_video.equals("true")) {
             videoMaker.stop();
             slf4jLogger.info("Video mode true...VideoMaker stopped");
         }
-       // TestUtils.runRule(videoRule,this,"after");
+    }
+
+    @And("^Make scenario fail$")
+    public void makeScenarioFail() throws Throwable {
+        fail("Reason of fail");
     }
 }
 

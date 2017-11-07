@@ -1,5 +1,6 @@
 package com.websoul.qatools.helpers.reporters;
 
+import com.websoul.qatools.helpers.drivers.browsers.BrowserDriver;
 import cucumber.runtime.StepDefinitionMatch;
 import gherkin.formatter.Formatter;
 import gherkin.formatter.Reporter;
@@ -7,6 +8,9 @@ import gherkin.formatter.model.*;
 import gherkin.formatter.model.Step;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.yandex.qatools.allure.Allure;
 import ru.yandex.qatools.allure.annotations.*;
 import ru.yandex.qatools.allure.config.AllureModelUtils;
@@ -15,6 +19,7 @@ import ru.yandex.qatools.allure.model.DescriptionType;
 import ru.yandex.qatools.allure.model.SeverityLevel;
 import ru.yandex.qatools.allure.utils.AnnotationManager;
 
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -52,6 +57,9 @@ public class AllureReporter implements Reporter, Formatter {
 
     //to avoid duplicate names of attachments and messages
     private long counter = 0;
+
+    @Autowired
+    BrowserDriver browserDriver;
 
     @Override
     public void syntaxError(String state, String event, List<String> legalEvents, String uri, Integer line) {
@@ -185,6 +193,11 @@ public class AllureReporter implements Reporter, Formatter {
             if (FAILED.equals(result.getStatus())) {
                 lifecycle.fire(new StepFailureEvent().withThrowable(result.getError()));
                 lifecycle.fire(new TestCaseFailureEvent().withThrowable(result.getError()));
+                try {
+                    attachScreenshot();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 currentStatus = FAILED;
             } else if(SKIPPED.equals(result.getStatus())){
                 lifecycle.fire(new StepCanceledEvent());
@@ -197,6 +210,14 @@ public class AllureReporter implements Reporter, Formatter {
             lifecycle.fire(new StepFinishedEvent());
             match = null;
         }
+    }
+
+
+
+
+    @Attachment(type = "image/png")
+    public byte[] attachScreenshot() throws IOException {
+        return ((TakesScreenshot) browserDriver.getCurrentDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Override

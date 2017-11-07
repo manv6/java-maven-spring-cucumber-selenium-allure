@@ -107,6 +107,8 @@ public class BrowserFactory {
     private WebDriver createChromeDriver() throws IOException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments(Arrays.asList("--window-size=1920,1080"));
+        options.addArguments("test-type=browser");
+        options.addArguments("disable-infobars");
         if (chrome_profile_path != null)
             options.addArguments("user-data-dir=" + chrome_profile_path);
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -117,7 +119,7 @@ public class BrowserFactory {
             //TO DO VIDEO RECORDER FOR LOCAL TEST EXECUTION
         }
 
-        return new ChromeDriver();
+        return new ChromeDriver(options);
 
     }
 
