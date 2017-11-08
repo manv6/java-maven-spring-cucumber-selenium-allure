@@ -1,6 +1,7 @@
 package com.websoul.qatools.steps.definitions;
 
-import com.automation.remarks.junit.VideoRule;
+import com.automation.remarks.video.recorder.VideoRecorder;
+import com.automation.remarks.video.recorder.monte.MonteRecorder;
 import com.websoul.qatools.helpers.context.cache.InitialCachedData;
 import com.websoul.qatools.helpers.context.cache.RuntimeCachedData;
 import com.websoul.qatools.helpers.context.impl.CachedDataContextImpl;
@@ -17,16 +18,19 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import org.junit.Rule;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static junit.framework.TestCase.fail;
 
 
 public class ConfigurationStepDefinitions {
@@ -53,17 +57,22 @@ public class ConfigurationStepDefinitions {
 
     private final Logger slf4jLogger = LoggerFactory.getLogger(ConfigurationStepDefinitions.class);
 
-    @Rule
-    public VideoRule videoRule = new VideoRule();
+
+    @Value("#{properties['record_video']}")
+    private String record_video;
+
+    public MonteRecorder monteRecorder = new MonteRecorder();
 
 
     @Before
     public void before(Scenario scenario) throws IOException, AWTException {
         this.scenario = scenario;
+//        if (record_video.equals("true")) {
+        slf4jLogger.info("Video mode true...VideoMaker started");
+        monteRecorder.start();
+
     }
 
-    @Value("#{properties['record_video']}")
-    private String record_video;
 
     @Given("^I'm using browser \"([^\"]*)\"$")
     public void I_m_using_browser(String browser) throws Throwable {
@@ -72,12 +81,7 @@ public class ConfigurationStepDefinitions {
         genericPageController.initializeElementsForAllPages();
         if (browser.equalsIgnoreCase("remote"))
             commonTools.getVideoLinK(browserCachedData.getVideoLink());
-        else if (record_video.equals("true")) {
-            videoMaker.initialize();
-            videoMaker.start();
-            slf4jLogger.info("Video mode true...initializing VideoMaker");
-        } else
-            slf4jLogger.info("No video needed");
+
     }
 
     @And("^Navigate to url \"([^\"]*)\"$")
@@ -87,16 +91,32 @@ public class ConfigurationStepDefinitions {
 
     @After
     public void after() throws IOException {
-        if (scenario.isFailed()) {
-            // Take a screenshot...
-            final byte[] screenshot = ((TakesScreenshot) browserDriver.getCurrentDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
-        }
-        if (record_video.equals("true")) {
-            videoMaker.stop();
-            slf4jLogger.info("Video mode true...VideoMaker stopped");
-        }
-       // TestUtils.runRule(videoRule,this,"after");
+//        if (scenario.isFailed()) {
+//            scenario.embed(screenShotMaker.captureScreenshot(scenario.getName()), "image/png");
+//        }
+//        if (record_video.equals("true")) {
+        monteRecorder.stopAndSave(scenario.getName());
+        attachmentOfRecording();
+        slf4jLogger.info("Video mode true...VideoMaker stopped");
+//        }
     }
+
+    @And("^Make scenario fail$")
+    public void makeScenarioFail() throws Throwable {
+        fail("Reason of fail");
+    }
+
+    @Attachment(value = "video", type = "video/mp4")
+    private byte[] attachmentOfRecording() {
+        try {
+            File video = monteRecorder.getLastRecording();
+            return Files.readAllBytes(Paths.get(video.getAbsolutePath()));
+        } catch (IOException e) {
+            slf4jLogger.warn("Allure listener exception" + e);
+            return new byte[0];
+        }
+    }
+
+
 }
 

@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/com/websoul/qatools/scenarios/",
         glue = {"com.websoul.qatools.steps"},
-        plugin = {"com.websoul.qatools.helpers.reporters.AllureReporter",
+        plugin = {"ru.yandex.qatools.allure.cucumberjvm.AllureReporter",
                 "com.epam.reportportal.cucumber.ScenarioReporter",
                 "json",
                 "json:target/cucumber.json"}
