@@ -1,8 +1,9 @@
 @hackathon
 Feature: Test impl - Firefox
 
+  @good @link=http://yandex.ru @link.mylink-112-qwe=mylinkname-12  @link.mylink-112-qwe=12_12-12
   Scenario: Firefox Buy latest console camera and pre order game
-    Given I'm using browser "chrome"
+    Given I'm using browser "firefox"
     And Navigate to url "http://www.weqweqweqweamazon.com"
 #    And Login to Amazon with "hackathon.workable@gmail.com" username and "kwdikos1234!" password
 #      And Search for "PlayStation 4 Slim 1TB Console" product

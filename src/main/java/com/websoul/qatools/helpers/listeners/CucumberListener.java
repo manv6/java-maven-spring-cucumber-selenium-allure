@@ -24,8 +24,6 @@ public class CucumberListener extends RunListener {
     @Autowired
     BrowserDriver browserDriver;
 
-
-
     @Override
     public void testFailure(Failure failure) throws IOException {
 
@@ -37,7 +35,7 @@ public class CucumberListener extends RunListener {
         }
     }
 
-    @Attachment(value = "Failed Screen", type = "image/png")
+    @Attachment(value = "{0}", type = "image/png")
     public byte[] captureScreenshot(String attachName, WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }

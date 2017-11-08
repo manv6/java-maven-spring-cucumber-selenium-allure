@@ -1,8 +1,10 @@
 @testScreen
 Feature: Test impl - Chrome
 
+
+  @Video @tmsLink=OAT-219 @severity=blocker @issue=BUG-12312 @known @muted @goofy=dog @melted @link=http://yandex.ru
   Scenario: Chrome Buy latest console camera and pre order game
-    Given I'm using browser "chrome"
+    Given I'm using browser "firefox"
     And Navigate to url "http://www.google.com"
   And Page has title "hello world"
 #    And Login to Amazon with "hackathon.workable@gmail.com" username and "kwdikos1234!" password

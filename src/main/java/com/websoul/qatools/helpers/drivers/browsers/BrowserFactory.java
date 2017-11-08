@@ -111,13 +111,6 @@ public class BrowserFactory {
         options.addArguments("disable-infobars");
         if (chrome_profile_path != null)
             options.addArguments("user-data-dir=" + chrome_profile_path);
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-
-        // video record
-        if (record_video.equalsIgnoreCase("true")) {
-            //TO DO VIDEO RECORDER FOR LOCAL TEST EXECUTION
-        }
 
         return new ChromeDriver(options);
 
