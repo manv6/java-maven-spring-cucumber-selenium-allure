@@ -1,6 +1,9 @@
 package com.websoul.qatools.helpers.context.cache;
 
 import com.websoul.qatools.helpers.utils.CommonTools;
+import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
+import io.restassured.specification.RequestSpecification;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +43,9 @@ public class RuntimeCachedData {
     private String ngrokDomainForCannedServer;
     private String uid;
     private long messageEnqueueTime;
+    private Response response;
+    private ValidatableResponse json;
+    private RequestSpecification request;
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
@@ -268,6 +274,30 @@ public class RuntimeCachedData {
 
     public long getMessageEnqueueTime() {
         return messageEnqueueTime;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    public ValidatableResponse getJson() {
+        return json;
+    }
+
+    public void setJson(ValidatableResponse json) {
+        this.json = json;
+    }
+
+    public RequestSpecification getRequest() {
+        return request;
+    }
+
+    public void setRequest(RequestSpecification request) {
+        this.request = request;
     }
 }
 

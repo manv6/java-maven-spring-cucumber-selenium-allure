@@ -366,13 +366,20 @@ public class CommonTools {
         return exists;
     }
 
-    public static String getValueOfKeyInDataTable(DataTable dataTable, String key) {
-        int i = 0;
-        while (!dataTable.getGherkinRows().get(i).getCells().get(0).equals(key)) {
-            i++;
-        }
-        return dataTable.getGherkinRows().get(i).getCells().get(1);
+    public String getValueOfKeyInDataTable(DataTable dataTable, String key) {
+
+        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
+        return data.get(0).get(key);
     }
+
+    public List<String> getValuesOfKeyInDataTable(DataTable dataTable, String key) {
+
+        List<String> values = new ArrayList<>();
+        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
+        data.forEach(d -> values.add(d.get(key)));
+        return values;
+    }
+
 
     public static String getValueOfKeyInDataTableHorizontal(DataTable dataTable, String key, int row) {
         int i = 0;
