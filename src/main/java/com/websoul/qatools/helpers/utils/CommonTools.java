@@ -6,6 +6,7 @@ import com.google.common.collect.Table;
 import cucumber.api.DataTable;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.qameta.allure.Attachment;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.DateMidnight;
@@ -16,6 +17,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 import org.w3c.dom.Document;
@@ -24,7 +26,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import ru.yandex.qatools.allure.annotations.Attachment;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -825,5 +826,12 @@ public class CommonTools {
 
     public static void main(String args[]) throws IOException {
         CommonTools.writeFile("sdasdadsasd", "hello");
+    }
+
+    public static void printBeanNames(ApplicationContext context){
+        String[] beanNames = context.getBeanDefinitionNames();
+        Arrays.stream(beanNames)
+                .filter(n -> !n.contains("springframework"))
+                .forEach(System.out::println);
     }
 }

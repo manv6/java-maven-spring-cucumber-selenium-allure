@@ -9,6 +9,13 @@
             base-package="com.websoul.qatools"/>
 
     <util:properties id="properties" location="classpath:/config.properties"/>
+    <util:properties id="video" location="classpath:/video.properties"/>
+    <util:properties id="reportportal" location="classpath:/reportportal.properties"/>
+    <util:properties id="allure" location="classpath:/allure.properties"/>
     <util:properties id="smtpProperties" location="classpath:/smtp.properties"/>
 
+
+    <context:component-scan base-package="com.websoul.qatools.ui">
+        <context:include-filter type="annotation" expression="com.websoul.qatools.helpers.annotations.Page"/>
+    </context:component-scan>
 </beans>

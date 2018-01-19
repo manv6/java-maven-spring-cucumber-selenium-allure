@@ -1,8 +1,7 @@
 @hackathon
-@FeatureTag @tmsLink=OAT-4444 @flaky @issue=BUG-22400
 Feature: Test impl - Safari
 
-  @good
+  @FeatureTag @tmsLink=OAT-4444 @flaky @issue=BUG-22400
   Scenario: Safari Buy latest console camera and pre order game
     Given I'm using browser "firefox"
     And Navigate to url "http://www.amazon.com"

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by dimitris giannakos on 20/10/2017.
+ * Created by manolis vlastos on 20/10/2017.
  */
 @Service
 public class AmazonLoginPageActions {

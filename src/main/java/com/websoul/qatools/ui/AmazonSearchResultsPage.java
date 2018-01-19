@@ -1,13 +1,15 @@
 package com.websoul.qatools.ui;
 
+import com.websoul.qatools.helpers.annotations.Page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by dimitris giannakos on 20/10/2017.
+ * Created by manolis vlastos on 20/10/2017.
  */
+@Page
 @Service
 public class AmazonSearchResultsPage {
 

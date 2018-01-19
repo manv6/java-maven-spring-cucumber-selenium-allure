@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         tags = {"~@ignore"},
         features = "classpath:parallel/features/[FEATURE_FILE_NAME].feature",
         glue = {"com.websoul.qatools.steps"},
-        plugin = {"ru.yandex.qatools.allure.cucumberjvm.AllureReporter",
+        plugin = {"io.qameta.allure.cucumberjvm.AllureCucumberJvm",
                 "com.epam.reportportal.cucumber.StepReporter",
                 "json",
                 "json:target/cucumber-report/[FEATURE_FILE_NAME].json"}

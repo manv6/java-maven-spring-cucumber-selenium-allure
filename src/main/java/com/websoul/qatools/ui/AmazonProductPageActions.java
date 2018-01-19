@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import static org.junit.Assert.*;
 
 /**
- * Created by dimitris giannakos on 20/10/2017.
+ * Created by manolis vlastos on 20/10/2017.
  */
 @Service
 public class AmazonProductPageActions {

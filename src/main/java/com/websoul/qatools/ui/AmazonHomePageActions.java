@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by dimitris giannakos on 20/10/2017.
+ * Created by manolis vlastos on 20/10/2017.
  */
 @Service
 public class AmazonHomePageActions {
