@@ -226,7 +226,7 @@
         <junit.version>4.12</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <info.cukes.version>2.0.1</info.cukes.version>
-        <org.springframework.version>4.3.7.RELEASE</org.springframework.version>
+        <org.springframework.version>5.3.19</org.springframework.version>
         <slf4j.version>1.7.12</slf4j.version>
         <allure.version>1.5.4</allure.version>
         <allure.maven.plugin>2.5</allure.maven.plugin>
